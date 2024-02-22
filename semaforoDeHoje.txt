@@ -1,0 +1,71 @@
+//Declaração das variáveis GLOBAIS
+int vermelho = 3;
+int amarelo = 4;
+int verde = 5;
+int tempo_intermitente = 1000;
+int botao = 2;
+int vermelhoPd = 7;
+int verdePd = 6;
+
+
+//tem energia -> DigitalRead() retorna 1
+// não tem energia -> DigitalRead retorna 0
+
+
+//void setup
+void setup(){
+    //Determina que os pinos 3,4,5 serão saídas.
+    pinMode(vermelho, OUTPUT);
+    pinMode(amarelo, OUTPUT);
+    pinMode(verde, OUTPUT);
+    pinMode(botao, OUTPUT);
+    pinMode(vermelhoPd,OUTPUT);
+    pinMode(verdePd,OUTPUT);
+
+    controlaCor(amarelo, 1000, false);
+    controlaCor(amarelo, 1000, false);
+    controlaCor(amarelo, 1000, false);
+
+}
+
+
+//{tipo do retorno} {nome da função} (parâmetros)
+//void loop
+void loop(){
+   
+    digitalWrite(vermelho, 1);
+    digitalWrite(verdePd, 1);
+    delay(5000);
+    digitalWrite(vermelho, 1);
+    delay(5000);
+    digitalWrite(verde, 1);
+    digitalWrite(vermelhoPd, 1);
+    
+    
+    bool estadoBotao = false;
+    estadoBotao = digitalRead(botao);
+    
+  
+   }
+    
+
+
+//Função serve para controlar a cor que eu quiser, pelo tempo que eu quiser.
+int controlaCor (int cor, int tempo, bool esta_no_loop) {
+    digitalWrite(cor, 1);
+    delay(tempo);
+    digitalWrite(cor, 0);
+    
+    if(esta_no_loop == false){
+        delay(tempo);
+        return 0;
+        //se bateu aqui, é por que a função foi chamada no setup
+    }
+    else{
+        return 1;
+        //se bateu aqui, é por que a função foi chamada no Loop
+    }
+}
+
+
+
